@@ -1,22 +1,25 @@
 'use client';
 
-import { AuthService } from '@/services/auth/auth.service';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { AuthService } from '@/services/auth/auth.service';
+import { useSession } from '@/hooks/useSession';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
-  const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const { setToken } = useSession(); 
 
   const handleLogin = async () => {
     try {
       const { token } = await AuthService.login(username);
-      setToken(token);
-      localStorage.setItem('token', token);
+      setToken(token); 
       setError(null);
-    } catch (err: any) {
-      setError('Ошибка при авторизации');
+      router.push('/main'); 
+    } catch (err) {
       console.error(err);
+      setError('Ошибка при авторизации');
     }
   };
 
@@ -36,12 +39,6 @@ export default function LoginPage() {
       >
         Войти
       </button>
-
-      {token && (
-        <div className="mt-4 text-green-600">
-          Успешно! Токен: <code>{token}</code>
-        </div>
-      )}
 
       {error && <div className="mt-4 text-red-600">{error}</div>}
     </div>

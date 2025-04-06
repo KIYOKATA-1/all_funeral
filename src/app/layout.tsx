@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SplashProvider from "./components/SplashProvider";
+import SessionProvider from "@/context/SessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <SplashProvider>{children}</SplashProvider>
+        <SessionProvider>
+          <SplashProvider>
+            <main className="main-content">{children}</main>
+          </SplashProvider>
+        </SessionProvider>{" "}
       </body>
     </html>
   );

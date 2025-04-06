@@ -12,7 +12,7 @@ export const AuthService = {
     const token = response.headers['authorization']?.replace('Bearer ', '');
 
     if (!token) {
-      throw new Error('Token not found in response headers');
+      throw new Error('Token not found');
     }
 
     return { token };
