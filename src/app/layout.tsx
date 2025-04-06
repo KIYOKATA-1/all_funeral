@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SplashProvider from "./components/SplashProvider";
 import SessionProvider from "@/context/SessionProvider";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,14 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProvider>
           <SplashProvider>
-            <main className="main-content">{children}</main>
+            <div style={{ display: 'flex', minHeight: '100vh' }}>
+              <Sidebar />
+              <main style={{ flexGrow: 1 }} className="main-content">
+                {children}
+              </main>
+            </div>
           </SplashProvider>
-        </SessionProvider>{" "}
+        </SessionProvider>
       </body>
     </html>
   );
