@@ -22,9 +22,7 @@ export default function Sidebar() {
   };
 
   const handleLogout = () => {
-    // Очищаем токен, что приводит к логауту
     setToken(null);
-    // Перенаправляем пользователя на страницу логина
     router.push("/login");
   };
 

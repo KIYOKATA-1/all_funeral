@@ -17,7 +17,6 @@ export default function BusinessEntityDropdown() {
     setIsOpen(false);
   };
 
-  // Закрываем дропдаун, если клик произошёл вне компонента
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -35,9 +34,8 @@ export default function BusinessEntityDropdown() {
       <div
         className={styles.dropdownHeader}
         onClick={toggleDropdown}
-        tabIndex={0} // чтобы можно было фокусироваться с клавиатуры
+        tabIndex={0} 
         onKeyDown={(e) => {
-          // Закрываем/открываем по Enter или Space
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             toggleDropdown();

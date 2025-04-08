@@ -14,12 +14,10 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-// Компонент для условного отображения Sidebar
 function ConditionalSidebar() {
   const { token } = useSession();
   const pathname = usePathname();
 
-  // Если пользователь не авторизован или находится на странице логина, не показываем сайдбар
   if (!token || pathname === "/login") {
     return null;
   }

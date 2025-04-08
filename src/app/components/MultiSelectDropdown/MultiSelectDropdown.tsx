@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import styles from "./MultiSelectDropdown.module.scss";
 
 export interface MultiSelectDropdownProps {
@@ -69,11 +70,14 @@ export default function MultiSelectDropdown({
         onClick={handleButtonClick}
       >
         {displayValue}
-        <img
-          src={isOpen ? "/assets/icons/chevroneUp.svg" : "/assets/icons/chevroneDown.svg"}
-          alt="dropdown arrow"
-          className={styles.arrow}
-        />
+        <div className={styles.arrowWrapper}>
+          <Image
+            src={isOpen ? "/assets/icons/chevroneUp.svg" : "/assets/icons/chevroneDown.svg"}
+            alt="dropdown arrow"
+            fill
+            className={styles.arrow}
+          />
+        </div>
       </button>
       <ul className={`${styles.customDropdownList} ${isOpen ? styles.open : ""}`}>
         {options.map((option) => {

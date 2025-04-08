@@ -1,15 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "./CompanyDetails.module.scss";
 import { ICompany } from "@/services/company/company.types";
 import SingleSelectDropdown from "../SingleSelectDropdown/SingleSelectDropdown";
 import MultiSelectDropdown from "../MultiSelectDropdown/MultiSelectDropdown";
+import { CompanyService } from "@/services/company/company.service";
 
 interface CompanyDetailsProps {
   company: ICompany;
 }
 
-// Преобразует дату ISO (yyyy-mm-dd) -> дд.мм.гггг
 function formatDateToDisplay(dateString: string): string {
   if (!dateString) return "";
   const date = new Date(dateString);
@@ -19,21 +20,18 @@ function formatDateToDisplay(dateString: string): string {
   return `${day}.${month}.${year}`;
 }
 
-// Преобразует дату дд.мм.гггг -> ISO (yyyy-mm-dd)
 function parseDisplayDateToISO(displayDate: string): string {
   const [day, month, year] = displayDate.split(".");
   if (!day || !month || !year) return "";
   return `${year}-${month}-${day}`;
 }
 
-// Опции для Business entity (одиночный выбор)
 const businessEntityOptions = [
   "Sole Proprietorship",
   "Partnership",
   "Limited Liability Company",
 ];
 
-// Опции для Company type (множественный выбор)
 const companyTypeOptions = [
   "Funeral Home",
   "Logistics services",
@@ -43,15 +41,13 @@ const companyTypeOptions = [
 export default function CompanyDetails({ company }: CompanyDetailsProps) {
   const [isEditing, setIsEditing] = useState(false);
 
-  // Agreement number, Date, Business entity и Company type хранятся для совместимости,
-  // но в режиме редактирования их изменение более не предусмотрено.
   const [agreementNumber, setAgreementNumber] = useState(company.contract.no);
   const initialDate = formatDateToDisplay(company.contract.issue_date);
   const [date, setDate] = useState(initialDate);
   const [businessEntity, setBusinessEntity] = useState(company.businessEntity);
   const [companyType, setCompanyType] = useState<string[]>(company.type);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const isoDate = parseDisplayDateToISO(date);
     const updatedData = {
       contract: {
@@ -61,8 +57,20 @@ export default function CompanyDetails({ company }: CompanyDetailsProps) {
       businessEntity,
       type: companyType,
     };
-    console.log("Сохраняем данные: ", updatedData);
-    setIsEditing(false);
+
+    try {
+      const token = localStorage.getItem("token") || "";
+      const updatedCompany = await CompanyService.updateCompany(
+        company.id,
+        token,
+        updatedData
+      );
+      console.log("Обновленные данные:", updatedCompany);
+    } catch (error) {
+      console.error("Ошибка при обновлении данных:", error);
+    } finally {
+      setIsEditing(false);
+    }
   };
 
   return (
@@ -71,17 +79,23 @@ export default function CompanyDetails({ company }: CompanyDetailsProps) {
         <h2>Company Details</h2>
         {!isEditing ? (
           <button className={styles.editBtn} onClick={() => setIsEditing(true)}>
-            <img src="/assets/icons/Edit.svg" alt="Edit" />
+            <div className={styles.iconWrapper}>
+              <Image src="/assets/icons/Edit.svg" alt="Edit" fill className={styles.icon} />
+            </div>
             Edit
           </button>
         ) : (
           <div className={styles.editActions}>
             <button className={styles.saveBtn} onClick={handleSave}>
-              <img src="/assets/icons/save.svg" alt="Save" />
+              <div className={styles.iconWrapper}>
+                <Image src="/assets/icons/save.svg" alt="Save" fill className={styles.icon} />
+              </div>
               Save changes
             </button>
             <button className={styles.cancelBtn} onClick={() => setIsEditing(false)}>
-              <img src="/assets/icons/Cancel.svg" alt="Cancel" />
+              <div className={styles.iconWrapper}>
+                <Image src="/assets/icons/Cancel.svg" alt="Cancel" fill className={styles.icon} />
+              </div>
               Cancel
             </button>
           </div>
@@ -89,7 +103,6 @@ export default function CompanyDetails({ company }: CompanyDetailsProps) {
       </div>
 
       <div className={styles.contentWrapper}>
-        {/* VIEW MODE */}
         <div className={`${styles.content} ${!isEditing ? styles.active : ""}`}>
           <div className={styles.viewRow}>
             <span className={styles.label}>Agreement:</span>
@@ -109,7 +122,6 @@ export default function CompanyDetails({ company }: CompanyDetailsProps) {
           </div>
         </div>
 
-        {/* EDIT MODE */}
         <div className={`${styles.content} ${isEditing ? styles.active : ""}`}>
           <div className={styles.container}>
             <div className={styles.top}>

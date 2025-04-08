@@ -10,6 +10,34 @@
     align-items: center;
   }
   
+  .leftHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .backButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  
+    &:active {
+      background-color: #bba8ff;
+    }
+  }
+  
   .title {
     font-size: 28px;
     font-weight: bold;
@@ -17,7 +45,26 @@
   
   .icons {
     display: flex;
+    flex-direction: row;
     gap: 12px;
+  
+    .iconButton {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: background-color 0.2s ease-in-out;
+  
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
   }
   
   .icon {

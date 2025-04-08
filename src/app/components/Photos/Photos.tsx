@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { ICompanyPhoto } from "@/services/company/company.types";
 import styles from "./Photos.module.scss";
 
@@ -13,16 +14,37 @@ export default function Photos({ photos }: PhotosProps) {
       <div className={styles.cardHeader}>
         <h2>Photos</h2>
         <button className={styles.addBtn}>
-          <img src="/assets/icons/photo.svg" alt="Add" className={styles.iconSmall} />
+          <div className={styles.iconSmallWrapper}>
+            <Image
+              src="/assets/icons/photo.svg"
+              alt="Add"
+              fill
+              className={styles.iconSmall}
+            />
+          </div>
           Add
         </button>
       </div>
       <div className={styles.photos}>
         {photos.map((photo) => (
           <div key={photo.filepath} className={styles.photoWrapper}>
-            <img src={photo.thumbpath} alt={photo.name} className={styles.photo} />
+            <div className={styles.photo}>
+              <Image
+                src={photo.thumbpath}
+                alt={photo.name}
+                fill
+                style={{ objectFit: "cover", borderRadius: "10px" }}
+              />
+            </div>
             <button className={styles.deleteBtn}>
-              <img src="/assets/icons/Trash-2.svg" alt="Delete" className={styles.iconSmall} />
+              <div className={styles.iconSmallWrapper}>
+                <Image
+                  src="/assets/icons/Trash-2.svg"
+                  alt="Delete"
+                  fill
+                  className={styles.iconSmall}
+                />
+              </div>
             </button>
           </div>
         ))}
