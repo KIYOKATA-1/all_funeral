@@ -49,15 +49,24 @@ export default function MainPage() {
   const handleSaveName = async (newName: string) => {
     if (!company || !token) return;
     try {
-      const updated = await CompanyService.updateCompany(company.id.toString(), token, {
-        name: newName,
-      });
+      const updated = await CompanyService.updateCompany(
+        company.id.toString(),
+        token,
+        {
+          name: newName,
+        }
+      );
       setCompany(updated);
       setIsEditModalOpen(false);
     } catch (err) {
       alert("Ошибка обновления названия компании");
     }
   };
+
+  if (!token || !company) {
+    return <div className={styles.loading}>Загрузка...</div>;
+  }
+  
 
   const handleDeleteCompany = async () => {
     if (!company || !token) return;
@@ -67,6 +76,15 @@ export default function MainPage() {
     } catch (err) {
       alert("Ошибка удаления компании");
     }
+  };
+
+  // Функция обновления списка фотографий после успешной загрузки
+  const handlePhotoUploadSuccess = (newPhoto: any) => {
+    if (!company) return;
+    setCompany({
+      ...company,
+      photos: [...company.photos, newPhoto],
+    });
   };
 
   if (error) return <div className={styles.error}>{error}</div>;
@@ -103,7 +121,10 @@ export default function MainPage() {
           <h1 className={styles.title}>{company.name}</h1>
         </div>
         <div className={styles.icons}>
-          <button className={styles.iconButton} onClick={() => setIsEditModalOpen(true)}>
+          <button
+            className={styles.iconButton}
+            onClick={() => setIsEditModalOpen(true)}
+          >
             <Image
               src="/assets/icons/Edit.svg"
               alt="Edit"
@@ -112,7 +133,10 @@ export default function MainPage() {
               height={20}
             />
           </button>
-          <button className={styles.iconButton} onClick={() => setIsDeleteModalOpen(true)}>
+          <button
+            className={styles.iconButton}
+            onClick={() => setIsDeleteModalOpen(true)}
+          >
             <Image
               src="/assets/icons/Trash.svg"
               alt="Delete"
@@ -130,7 +154,12 @@ export default function MainPage() {
         isEditing={isEditingContacts}
         setIsEditing={setIsEditingContacts}
       />
-      <Photos photos={company.photos} />
+      <Photos
+        photos={company.photos}
+        companyId={Number(company.id)} // <-- приводим к числу
+        token={token}
+        onUploadSuccess={handlePhotoUploadSuccess}
+      />
     </div>
   );
 }

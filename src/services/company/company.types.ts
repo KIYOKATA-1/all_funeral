@@ -27,4 +27,10 @@ export interface ICompanyPhoto {
     phone?: string;
     email?: string;
   }
+  export interface ICompanyPhoto {
+    name: string;
+    filepath: string;
+    thumbpath: string;
+    createdAt: string;
+  }
   

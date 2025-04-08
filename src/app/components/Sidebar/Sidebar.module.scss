@@ -1,7 +1,10 @@
 .sidebarWrapper {
     display: flex;
-    position: relative;
-    height: 100vh;
+    flex-direction: column;
+    background-color: #3b3b3b;
+    align-self: stretch;
+    height: auto;
+    min-height: 100%; 
   }
   
   .sidebar {
@@ -14,7 +17,9 @@
     padding-top: 20px;
     color: white;
     z-index: 10;
+    height: 100%;
   }
+  
   
   .topSection {
     display: flex;

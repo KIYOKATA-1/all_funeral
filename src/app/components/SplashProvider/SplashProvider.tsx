@@ -35,6 +35,7 @@ export default function SplashProvider({ children }: { children: React.ReactNode
         className={`${styles.splashWrapper} ${!visible ? styles.fadeOut : ''}`}
       >
         <Image src="/assets/image/logo.svg" alt="logo" width={100} height={100} />
+        
       </div>
     );
   }
