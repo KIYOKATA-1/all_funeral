@@ -5,10 +5,11 @@ import styles from "./Contacts.module.scss";
 
 interface ContactsProps {
   company: ICompany;
+  isEditing: boolean;
+  setIsEditing: (value: boolean) => void;
 }
 
-export default function Contacts({ company }: ContactsProps) {
-  const [isEditing, setIsEditing] = useState(false);
+export default function Contacts({ company, isEditing, setIsEditing }: ContactsProps) {
   const [responsiblePerson, setResponsiblePerson] = useState(company.responsiblePerson ?? "");
   const [phone, setPhone] = useState(company.phone ?? "");
   const [email, setEmail] = useState(company.email ?? "");
@@ -26,7 +27,7 @@ export default function Contacts({ company }: ContactsProps) {
   };
 
   return (
-    <div className={`${styles.card} ${isEditing ? styles.editing : ""}`}>
+    <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h2>Contacts</h2>
         {!isEditing ? (
@@ -49,7 +50,6 @@ export default function Contacts({ company }: ContactsProps) {
       </div>
 
       <div className={styles.contentWrapper}>
-        {/* Режим просмотра */}
         <div className={`${styles.content} ${!isEditing ? styles.active : ""}`}>
           <div className={styles.viewRow}>
             <span className={styles.label}>Responsible person:</span>
@@ -65,7 +65,6 @@ export default function Contacts({ company }: ContactsProps) {
           </div>
         </div>
 
-        {/* Режим редактирования */}
         <div className={`${styles.content} ${isEditing ? styles.active : ""}`}>
           <div className={styles.editRow}>
             <label className={styles.label}>Responsible person:</label>

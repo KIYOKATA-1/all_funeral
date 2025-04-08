@@ -1,148 +1,123 @@
 .card {
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    border: 1px solid #e5e5e5;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12);
-    margin: 24px 0;
-    overflow: visible;
-    width: 100%;
-    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-    max-height: 202px;
-    will-change: max-height, padding;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12);
+  margin: 24px 0;
+  overflow: hidden;
+  width: 100%;
+  transition: padding 0.4s ease;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
   }
-  
-  .card.editing {
-    padding-top: 24px;
-    padding-bottom: 24px;
-    max-height: 460px;
+}
+
+.editBtn,
+.saveBtn,
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #000;
+  border: 1px solid #00000033;
+  background-color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #6d4aff;
+    border-color: #6d4aff;
   }
-  
-  .cardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  
-    h2 {
-      font-size: 16px;
-      font-weight: 700;
-      color: #222;
-    }
-  }
-  
-  .editBtn,
-  .saveBtn,
-  .cancelBtn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+}
+
+.cancelBtn {
+  margin-left: 12px;
+}
+
+.editActions {
+  display: flex;
+  gap: 8px;
+}
+
+.contentWrapper {
+  position: relative;
+}
+
+.content {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+.content.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  height: auto;
+  overflow: visible;
+}
+
+.viewRow,
+.editRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .label {
     font-size: 14px;
-    color: #000;
-    border: 1px solid #00000033;
-    background-color: #fff;
-    padding: 6px 12px;
+    color: #888;
+    width: 160px;
+    margin-right: 8px;
+  }
+
+  .value {
+    font-size: 16px;
+    color: #222;
+  }
+
+  .input {
+    flex: 1;
+    height: 40px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  
+    padding: 12px 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s ease;
+
     &:hover {
-      color: #6d4aff;
-      border-color: #6d4aff;
+      border-color: #00000080;
+    }
+
+    &:focus {
+      border-color: #35cdfd;
     }
   }
-  
-  .cancelBtn {
-    margin-left: 12px;
-  }
-  
-  .editActions {
-    display: flex;
-    gap: 8px;
-  }
-  
-  .contentWrapper {
-    position: relative;
-    min-height: 120px;
-  }
-  
-  .content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none;
-  }
-  
-  .content.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    position: relative;
-  }
-  
-  .viewRow {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-  
-    .label {
-      font-size: 14px;
-      color: #888;
-      width: 150px;
-      margin-right: 8px;
-    }
-  
-    .value {
-      font-size: 16px;
-      color: #222;
-    }
-  }
-  
-  .editRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 16px;
-  
-    .label {
-      font-size: 14px;
-      color: #888;
-      width: 160px;
-      margin-bottom: 4px;
-    }
-  
-    .input {
-      flex: 1;
-      height: 40px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 12px 10px;
-      font-size: 14px;
-      outline: none;
-      transition: border 0.2s ease;
-  
-      &:hover {
-        border-color: #00000080;
-      }
-  
-      &:focus {
-        border-color: #35cdfd;
-      }
-    }
-  }
-  
-  .iconWrapper {
-    position: relative;
-    width: 16px;
-    height: 16px;
-  }
-  
-  .iconSmall {
-    object-fit: contain;
-  }
-  
+}
+
+.iconWrapper {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+.iconSmall {
+  object-fit: contain;
+}

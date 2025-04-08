@@ -18,6 +18,7 @@ export default function MainPage() {
   const [error, setError] = useState<string | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditingContacts, setIsEditingContacts] = useState(false);
 
   const { token } = useSession();
   const router = useRouter();
@@ -32,6 +33,18 @@ export default function MainPage() {
       .then(setCompany)
       .catch(() => setError("Ошибка загрузки данных компании"));
   }, [token, router]);
+
+  useEffect(() => {
+    if (isEditingContacts) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isEditingContacts]);
 
   const handleSaveName = async (newName: string) => {
     if (!company || !token) return;
@@ -112,7 +125,11 @@ export default function MainPage() {
       </div>
 
       <CompanyDetails company={company} />
-      <Contacts company={company} />
+      <Contacts
+        company={company}
+        isEditing={isEditingContacts}
+        setIsEditing={setIsEditingContacts}
+      />
       <Photos photos={company.photos} />
     </div>
   );
