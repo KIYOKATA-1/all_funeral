@@ -1,0 +1,52 @@
+.card {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    margin: 24px 0;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .cardHeader h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .editBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .details span {
+    font-weight: 500;
+    color: #111;
+  }
+  
+  .iconSmall {
+    width: 16px;
+    height: 16px;
+  }
+  

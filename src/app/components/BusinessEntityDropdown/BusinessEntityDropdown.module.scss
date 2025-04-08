@@ -1,0 +1,52 @@
+.dropdownContainer {
+    position: relative;
+    width: 220px; /* Ширину подберите под себя */
+    font-family: inherit;
+  }
+  
+  .dropdownHeader {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    color: #333;
+    transition: border 0.2s, box-shadow 0.2s;
+    outline: none;
+    user-select: none;
+  
+    &:hover {
+      border-color: #666;
+    }
+  
+    &:focus {
+      outline: none;
+      border-color: #4bc1ff;
+      box-shadow: 0 0 0 2px rgba(75, 193, 255, 0.3);
+    }
+  }
+  
+  .dropdownList {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 99; /* Чтобы выпадающее меню было поверх всего */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdownItem {
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
+  

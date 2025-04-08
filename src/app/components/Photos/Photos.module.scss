@@ -1,0 +1,77 @@
+.card {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    margin: 24px 0;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .cardHeader h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .addBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  
+  .photoWrapper {
+    position: relative;
+  }
+  
+  .photo {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: border 0.2s ease-in-out;
+
+    &:hover {
+        border: 2px solid  #6243E6;
+    }
+  }
+  
+  .deleteBtn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .iconSmall {
+    width: 16px;
+    height: 16px;
+  }
+  

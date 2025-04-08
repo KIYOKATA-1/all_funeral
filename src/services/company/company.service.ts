@@ -1,3 +1,4 @@
+// company.service.ts
 import axios from 'axios';
 import { ICompany } from './company.types';
 
@@ -11,7 +12,20 @@ export const CompanyService = {
         'Content-Type': 'application/json',
       },
     });
+    return response.data;
+  },
 
+  async updateCompany(
+    id: string,
+    token: string,
+    updatedData: Partial<ICompany>
+  ): Promise<ICompany> {
+    const response = await axios.patch(`${API_URL}/companies/${id}`, updatedData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
   },
 };

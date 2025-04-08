@@ -4,66 +4,37 @@
     padding: 32px 24px;
   }
   
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
   .title {
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 24px;
   }
   
-  .card {
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    margin-bottom: 32px;
-  }
-  
-  .cardTitle {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #222;
-  }
-  
-  .details {
+  .icons {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 14px;
-    color: #444;
-  
-    span {
-      font-weight: 500;
-      color: #111;
-    }
+    gap: 12px;
   }
   
-  .photosBlock {
-    margin-bottom: 40px;
-  }
-  
-  .photos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  
-  .photo {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  .icon {
+    width: 20px;
+    height: 20px;
   }
   
   .error {
-    padding: 24px;
     color: red;
+    text-align: center;
+    padding: 40px;
   }
   
   .loading {
-    padding: 24px;
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    padding: 40px;
   }
   

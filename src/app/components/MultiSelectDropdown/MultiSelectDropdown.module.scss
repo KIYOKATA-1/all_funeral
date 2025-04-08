@@ -1,0 +1,113 @@
+.customDropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-family: inherit;
+  z-index: 1;
+}
+
+.customDropdownButton {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 12px;
+  background-color: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover{
+    border: 1px solid #00000080;
+  }
+  &:focus {
+    border-color: #35CDFD;
+  }
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+.customDropdownList {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 4px 0;
+  list-style: none;
+  margin: 0;
+  z-index: 10000;
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.customDropdownList.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.multiSelectOption {
+  label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #222;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: border 0.2s ease, background 0.2s ease;
+
+      &:checked {
+        background-color: #fff;
+        border-color: #555;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 1px;
+          left: 6px;
+          width: 5px;
+          height: 10px;
+          border: solid #222;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+.checked {
+  background-color: #0000000D; 
+}
